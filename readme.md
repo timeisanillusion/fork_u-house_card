@@ -2,6 +2,8 @@
 
 (I'm so lazy with codding so I asked Gemini to wrote this card :P Yeap)
 
+![msedge_bNu5APEUJq](https://github.com/user-attachments/assets/8405dc20-4e71-4588-a56a-044292b8ab87)
+
 An advanced, glassmorphism-styled Home Assistant Lovelace card designed for monitoring home climate, weather conditions, and environmental hazards.
 
 **temperature monitoring, smart AI weather advice, and immersive visual effects.**
@@ -145,4 +147,5 @@ rooms:
     entity: sensor.attic_temperature
     x: 50
     y: 10
+
     weight: 0
