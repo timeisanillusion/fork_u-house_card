@@ -60,32 +60,32 @@ const TRANSLATIONS = {
         // --- AI NARRACJA ---
         
         // 1. ZAGROŻENIE
-        alert_storm: "⚠️ <b>OSTRZEŻENIE KRYTYCZNE</b>: W pobliżu wykryto burzę. Spodziewaj się wyładowań i silnego wiatru. Zabezpiecz przedmioty na zewnątrz i pozostań w domu.",
+        alert_storm: "<span class='value-pill'>⚠️ <b>OSTRZEŻENIE KRYTYCZNE</b></span>: W pobliżu wykryto burzę. Spodziewaj się wyładowań i silnego wiatru. Zabezpiecz przedmioty na zewnątrz i pozostań w domu.",
         
         // 2. ZDROWIE (SMOG / PYŁKI)
-        alert_aqi_bad: "😷 <b>ALARM SMOGOWY</b>: Jakość powietrza jest fatalna <span class='value-pill'>PM2.5: {val}</span>. Wyjście na zewnątrz grozi problemami oddechowymi. Zamknij okna i włącz oczyszczacz.",
-        alert_aqi_mod: "😶 <b>OSTRZEŻENIE</b>: Podwyższone stężenie pyłów <span class='value-pill'>PM2.5: {val}</span>. Jakość powietrza jest przeciętna. Osoby wrażliwe powinny unikać wysiłku na zewnątrz.",
-        alert_pollen: "🤧 <b>ALARM DLA ALERGIKÓW</b>: Wykryto bardzo wysokie stężenie pyłków. Przygotuj leki przeciwhistaminowe i unikaj wietrzenia sypialni.",
+        alert_aqi_bad: "<span class='value-pill'>😷 <b>ALARM SMOGOWY</b></span>: Jakość powietrza jest fatalna <span class='value-pill'>PM2.5: <b>{val}</b></span>. Wyjście na zewnątrz grozi problemami oddechowymi. Zamknij okna i włącz oczyszczacz.",
+        alert_aqi_mod: "<span class='value-pill'>😶 <b>OSTRZEŻENIE</b></span>: Podwyższone stężenie pyłów <span class='value-pill'>PM2.5: <b>{val}</b></span>. Jakość powietrza jest przeciętna. Osoby wrażliwe powinny unikać wysiłku na zewnątrz.",
+        alert_pollen: "<span class='value-pill'>🤧 <b>ALARM DLA ALERGIKÓW</b></span>: Wykryto bardzo wysokie stężenie pyłków. Przygotuj leki przeciwhistaminowe i unikaj wietrzenia sypialni.",
         
         // 3. PROGNOZA (NADCHODZĄCE)
-        advice_rain_soon: "☂️ <b>WEŹ PARASOL</b>: Nadciągają opady deszczu. Spodziewaj się ich ok. godziny <span class='value-pill'>{time}</span>. Prognozowane <span class='value-pill'>{val} mm</span>",
-        advice_snow_soon: "❄️ <b>ZACHOWAJ OSTROŻNOŚĆ</b>: Ok. godziny <span class='value-pill'>{time}</span> zacznie padać śnieg. Warunki drogowe mogą się gwałtownie pogorszyć.",
+        advice_rain_soon: "<span class='value-pill'>☂️ <b>WEŹ PARASOL</b></span>: Nadciągają opady deszczu. Spodziewaj się ich ok. godziny <span class='value-pill'><b>{time}</b></span>. Prognozowane <span class='value-pill'><b>{val}</b> mm</span>",
+        advice_snow_soon: "<span class='value-pill'>❄️ <b>ZACHOWAJ OSTROŻNOŚĆ</b></span>: Ok. godziny <span class='value-pill'><b>{time}</b></span> zacznie padać śnieg. Warunki drogowe mogą się gwałtownie pogorszyć.",
         
         // 4. AKTUALNA POGODA
-        advice_rain_now: "🌧️ <b>DESZCZ</b>: Aktualny opad to <span class='value-pill'>{val} mm</span>. Jest mokro i ślisko. Jeśli musisz wyjść, koniecznie weź kurtkę przeciwdeszczową.",
-        advice_snow_now: "🌨️ <b>ŚNIEG</b>: Na zewnątrz sypie śnieg. Jest malowniczo, ale pamiętaj o ciepłym ubraniu i czapce.",
+        advice_rain_now: "<span class='value-pill'>🌧️ <b>DESZCZ</b></span>: Aktualny opad to <span class='value-pill'><b>{val}</b> mm</span>. Jest mokro i ślisko. Jeśli musisz wyjść, koniecznie weź kurtkę przeciwdeszczową.",
+        advice_snow_now: "<span class='value-pill'>🌨️ <b>ŚNIEG</b></span>: Na zewnątrz sypie śnieg. Jest malowniczo, ale pamiętaj o ciepłym ubraniu i czapce.",
         
         // 5. UV
-        alert_uv_high: "☀️ <b>WYSOKIE PROMIENIOWANIE</b>: Indeks UV wynosi <span class='value-pill'>{val}</span>. Skóra może ulec poparzeniu. Koniecznie użyj kremu z filtrem i okularów przeciwsłonecznych.",
+        alert_uv_high: "<span class='value-pill'>☀️ <b>PROMIENIOWANIE</b></span>: Indeks UV wynosi <span class='value-pill'><b>{val}</b></span>. Skóra może ulec poparzeniu. Koniecznie użyj kremu z filtrem i okularów przeciwsłonecznych.",
         
         // 6. TEMPERATURA + WIATR
-        advice_cold_wind: "🥶 <b>WIATR</b>: Jest <span class='value-pill'>{val} °C</span>, ale silny wiatr sprawia, że temperatura odczuwalna jest znacznie niższa. Ubierz się „na cebulkę” i chroń uszy.",
-        advice_cold: "🧣 <b>ZIMNO</b>: Temperatura wynosi <span class='value-pill'>{val} °C</span>. Zalecam ciepłą kurtkę przed wyjściem. Warto też sprawdzić, czy okna są szczelne.",
+        advice_cold_wind: "<span class='value-pill'>🥶 <b>WIATR</b></span>: Jest <span class='value-pill'><b>{val}</b> °C</span>, ale silny wiatr sprawia, że temperatura odczuwalna jest znacznie niższa. Ubierz się „na cebulkę” i chroń uszy.",
+        advice_cold: "<span class='value-pill'>🧣 <b>ZIMNO</b></span>: Temperatura wynosi <span class='value-pill' style='background: rgb(var(--rgb-lime)); --text-color: rgb(var(--rgb-black)); text-shadow: none; box-shadow: none;'>{val} °C</span>. Zalecam ciepłą kurtkę przed wyjściem. Warto też sprawdzić, czy okna są szczelne.",
         
-        advice_hot: "🔥 <b>GORĄC</b>: Temperatura osiągnęła <span class='value-pill'>{val} °C</span>. Unikaj słońca w godzinach szczytu, pij dużo wody i zasłoń rolety, aby nie nagrzewać domu.",
-        advice_nice: "😎 Pogoda jest stabilna, temperatura przyjemna <span class='value-pill'>{val} °C</span>. To idealny moment na spacer lub przewietrzenie mieszkania.",
+        advice_hot: "<span class='value-pill'>🔥 <b>GORĄC</b></span>: Temperatura osiągnęła <span class='value-pill'><b>{val}</b> °C</span>. Unikaj słońca w godzinach szczytu, pij dużo wody i zasłoń rolety.",
+        advice_nice: "😎 Pogoda jest stabilna, temperatura przyjemna <span class='value-pill'><b>{val}</b> °C</span>. To <span class='value-pill' style='background: rgb(var(--rgb-lime)); --text-color: rgb(var(--rgb-black)); text-shadow: none; box-shadow: none;'>idealny</span> moment na spacer lub przewietrzenie mieszkania.",
         
-        advice_gaming: "🎮 <b>TRYB KINOWY/GRY</b>: Tryb immersyjny aktywny. Sterowanie AmbiLight włączone.",
+        advice_gaming: "<span class='value-pill'>🎮 <b>TRYB IMERSYJNY</b></span>: Tryb kina lub gry aktywny. Sterowanie <span class='value-pill'><b>AmbiLight</b></span> włączone.",
     }
 };
 
@@ -468,11 +468,11 @@ class ForkUHouseCard extends HTMLElement {
               font-family: 'Roboto', sans-serif;
               border: 1px solid rgba(255,255,255,0.1);
               */
-              background: var(--card-background-color,--fork-u-bg);
+              background: var(--card-background-color,var(--fork-u-bg));
               border-radius: var(--ha-card-border-radius,var(--ha-border-radius-lg,20px));
           }
           .gradient-layer {
-              background: linear-gradient(to bottom, rgba(0,0,0,0.4) 0%, transparent 40px);
+              background: linear-gradient(to bottom, rgba(0,0,0,0.2) 0%, transparent 40px);
               position: absolute; top: 0; left: 0; width: 100%; height: 100%;
               background-size: cover; background-position: center;
               z-index: 0; transition: all 0.5s ease;
@@ -513,7 +513,7 @@ class ForkUHouseCard extends HTMLElement {
               position: absolute; transform: translate(-50%, -50%);
               padding: 6px 12px;
               border-radius: 16px;
-              background: rgba(20, 20, 20, 0.8);
+              background: rgba(20, 20, 20, 0.4);
               backdrop-filter: blur(8px);
               border: 1px solid rgba(255, 255, 255, 0.05);
               border-top: 1px solid rgba(0, 0, 0, 0.3);
@@ -540,7 +540,7 @@ class ForkUHouseCard extends HTMLElement {
           .footer[data-status="danger"] { background: rgba(80, 20, 20, 0.65); border-top-color: var(--color-hot); }
 
           .value-pill { 
-              background: rgba(20, 20, 20, 0.8);
+              background: rgba(20, 20, 20, 0.4);
               backdrop-filter: blur(8px);
               box-shadow: 3px 3px 6px rgba(0, 0, 0, 0.4), -2px -2px 4px rgba(255, 255, 255, 0.03), inset 1px 1px 2px rgba(255, 255, 255, 0.05);
               border: 1px solid rgba(255, 255, 255, 0.05);
@@ -556,7 +556,7 @@ class ForkUHouseCard extends HTMLElement {
           .median-pill {
               display: none; /* Disabled mediana pill */
               /* Disabled mediana pill */
-              background: rgba(20, 20, 20, 0.8);
+              background: rgba(20, 20, 20, 0.4);
               backdrop-filter: blur(8px);
               box-shadow: inset 2px 2px 4px rgba(0, 0, 0, 0.6), inset -1px -1px 2px rgba(255, 255, 255, 0.03), 0 4px 8px rgba(0, 0, 0, 0.3);
               border: 1px solid rgba(255, 255, 255, 0.05);
