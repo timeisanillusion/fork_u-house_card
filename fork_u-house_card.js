@@ -168,53 +168,60 @@ class ForkUHouseCard extends HTMLElement {
       if (this._animationFrame) cancelAnimationFrame(this._animationFrame);
     }
 
-    // --- NOWA LOGIKA WYBORU OBRAZKA ---
+     // --- NOWA LOGIKA WYBORU OBRAZKA ---
     _calculateImage() {
-        // Pobieramy ścieżkę folderu (zamiast konkretnego pliku)
         const path = this._config.image_path || "/local/home_bg/";
         
-        // 1. Pora Dnia (day / night)
+        // 1. Pora Dnia
         const sunState = this._hass.states[this._config.sun_entity || 'sun.sun']?.state || 'above_horizon';
         const timeOfDay = sunState === 'below_horizon' ? 'night' : 'day';
 
-        // 2. Data (Święta: 14.12 - 14.01) - Priorytet absolutny
+        // 2. Święta (Xmas Priority)
         const now = new Date();
         const month = now.getMonth() + 1;
         const day = now.getDate();
-        const isXmas = (month === 12 && day >= 14) || (month === 1 && day <= 14);
-
-        if (isXmas) {
+        if ((month === 12 && day >= 14) || (month === 1 && day <= 14)) {
             return `${path}winter_xmas_${timeOfDay}.png`;
         }
 
-        // 3. Sezon (Pora roku)
+        // 3. Sezon
         let season = this._hass.states[this._config.season_entity]?.state || 'summer';
-        // Mapowanie nazw polskich na angielskie (dla nazw plików)
         const seasonMap = { 'wiosna': 'spring', 'lato': 'summer', 'jesień': 'autumn', 'zima': 'winter' };
         if (seasonMap[season]) season = seasonMap[season];
         season = season.toLowerCase();
 
-        // 4. Pogoda + Boolean Config
+        // 4. Ścisłe Mapowanie Pogody (Strict Mapping)
         const wStateRaw = this._hass.states[this._config.weather_entity]?.state;
-        
+        let weatherSuffix = null;
+
         if (wStateRaw) {
-            // Zamiana myślników na podkreślniki dla klucza (np. lightning-rainy -> lightning_rainy)
-            const wStateClean = wStateRaw.replace(/-/g, '_').toLowerCase(); 
+            const s = wStateRaw.toLowerCase();
             
-            // Konstrukcja klucza konfiguracyjnego
-            // Np.: img_winter_day_fog
-            const configKey = `img_${season}_${timeOfDay}_${wStateClean}`;
+            // Tłumaczenie stanów HA na Twoje nazwy plików
+            if (['lightning', 'lightning-rainy'].includes(s)) {
+                weatherSuffix = 'lightning';
+            } else if (['rainy', 'pouring'].includes(s)) {
+                weatherSuffix = 'rainy';
+            } else if (['snowy', 'snowy-rainy'].includes(s)) {
+                weatherSuffix = 'snowy';
+            } else if (s === 'fog') {
+                weatherSuffix = 'fog';
+            }
+            // Sunny, cloudy, partlycloudy -> weatherSuffix pozostaje null (czyli fallback do season_day.png)
+        }
+
+        // 5. Sprawdzenie Boolean w Configu
+        if (weatherSuffix) {
+            // Klucz np.: img_winter_day_rainy
+            const configKey = `img_${season}_${timeOfDay}_${weatherSuffix}`;
             
-            // SPRAWDZAMY CZY W YAML JEST: img_winter_day_fog: true
+            // Jeśli w YAML jest: img_winter_day_rainy: true
             if (this._config[configKey] === true) {
-                // Jeśli tak, ładujemy specyficzny plik, np. winter_fog_day.png
-                // Uwaga: używamy tutaj nazwy pogody w nazwie pliku (np. fog, rainy, snowy)
-                return `${path}${season}_${wStateRaw}_${timeOfDay}.png`;
+                return `${path}${season}_${weatherSuffix}_${timeOfDay}.png`;
             }
         }
 
-        // 5. Fallback (Neutralny dla pory roku i dnia)
-        // Np. winter_day.png, summer_night.png
+        // 6. Fallback (Neutralny)
         return `${path}${season}_${timeOfDay}.png`;
     }
 
