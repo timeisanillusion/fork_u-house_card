@@ -386,16 +386,19 @@ class ForkUHouseCard extends HTMLElement {
           :host { display: block; --fork-u-bg: #1e2024; --color-cold: #60A5FA; --color-opt: #34D399; --color-warm: #FBBF24; --color-hot: #F87171; }
           .card {
               position: relative; display: flex; flex-direction: column; width: 100%; height: 350px;
-              background: var(--fork-u-bg);
               overflow: hidden;
               text-shadow: var(--primary-background-color) 0 1px 0px;
               /* Please style borders and box shadow manually */
               /*
+              background: var(--fork-u-bg);
               border-radius: 20px;
               box-shadow: 0 4px 10px rgba(0,0,0,0.3); 
               font-family: 'Roboto', sans-serif;
               border: 1px solid rgba(255,255,255,0.1);
               */
+              background: var(--card-background-color,--fork-u-bg);
+              border-radius: var(--ha-card-border-radius,var(--ha-border-radius-lg,20px));
+              clip-path: inset(0 0 0 0 round var(--ha-card-border-radius,var(--ha-border-radius-lg,20px)));
           }
           
           .bg-image {
