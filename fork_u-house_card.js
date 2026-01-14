@@ -9,7 +9,7 @@
 const TRANSLATIONS = {
     en: {
         loading: "Analyzing environmental data...",
-        home_median: "Home Avg",
+        home_median: "Home",
         
         // Conditions
         clear_night: "Clear Night", cloudy: "Cloudy", fog: "Fog", hail: "Hail",
