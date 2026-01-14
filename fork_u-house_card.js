@@ -472,7 +472,12 @@ class ForkUHouseCard extends HTMLElement {
               border-radius: var(--ha-card-border-radius,var(--ha-border-radius-lg,20px));
               clip-path: inset(0 0 0 0 round var(--ha-card-border-radius,var(--ha-border-radius-lg,20px)));
           }
-          
+          .gradient-layer {
+              background: linear-gradient(to bottom, rgba(0,0,0,0.4) 0%, transparent 40px);
+              position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+              background-size: cover; background-position: center;
+              z-index: 0; transition: all 0.5s ease;
+          }
           .bg-image {
               position: absolute; top: 0; left: 0; width: 100%; height: 100%;
               background-size: cover; background-position: center;
@@ -507,9 +512,11 @@ class ForkUHouseCard extends HTMLElement {
           .badges-layer { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 5; pointer-events: none; }
           .badge {
               position: absolute; transform: translate(-50%, -50%);
-              background: rgba(20, 20, 25, 0.75); backdrop-filter: blur(8px);
-              border: 1px solid rgba(255,255,255,0.15); padding: 6px 12px; border-radius: 16px;
-              display: flex; align-items: center; gap: 8px; pointer-events: auto; box-shadow: 0 4px 8px rgba(0,0,0,0.4);
+              background: rgba(20, 20, 25, 0.25); backdrop-filter: blur(8px);
+              padding: 6px 12px;
+              border-radius: 16px;
+              box-shadow: 3px 3px 6px rgba(0, 0, 0, 0.4), -2px -2px 4px rgba(255, 255, 255, 0.03), inset 1px 1px 2px rgba(255, 255, 255, 0.05);
+              display: flex; align-items: center; gap: 8px; pointer-events: auto;
           }
           .badge-dot { width: 8px; height: 8px; border-radius: 50%; }
           .is-cold .badge-dot { background: var(--color-cold); box-shadow: 0 0 5px var(--color-cold); }
@@ -530,8 +537,35 @@ class ForkUHouseCard extends HTMLElement {
           .footer[data-status="warn"] { background: rgba(80, 50, 10, 0.65); border-top-color: var(--color-warm); }
           .footer[data-status="danger"] { background: rgba(80, 20, 20, 0.65); border-top-color: var(--color-hot); }
 
-          .value-pill { background: rgba(255,255,255,0.1); padding: 4px 8px; border-radius: 6px; color: #ddd; white-space: nowrap;}
-          .median-pill { background: rgba(255,255,255,0.1); padding: 4px 8px; border-radius: 6px; font-size: 0.8rem; color: #ddd; white-space: nowrap; flex-shrink: 0; align-self: flex-start; margin-top: 2px;}
+          .value-pill { 
+              background: linear-gradient(145deg, #2d3038, #22252b);
+              box-shadow: inset 2px 2px 4px rgba(0, 0, 0, 0.6), inset -1px -1px 2px rgba(255, 255, 255, 0.03), 0 4px 8px rgba(0, 0, 0, 0.3);
+              border: 1px solid rgba(255, 255, 255, 0.05);
+              border-top: 1px solid rgba(0, 0, 0, 0.3);
+              border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+              padding: 4px 8px; 
+              border-radius: 20px; 
+              color: rgba(255, 255, 255, 0.6);
+              white-space: nowrap;
+              transition: all 0.2s ease;
+          }
+          .value-pill b { color: #fff; }
+          .median-pill {
+              background: linear-gradient(145deg, #2d3038, #22252b);
+              box-shadow: inset 2px 2px 4px rgba(0, 0, 0, 0.6), inset -1px -1px 2px rgba(255, 255, 255, 0.03), 0 4px 8px rgba(0, 0, 0, 0.3);
+              border: 1px solid rgba(255, 255, 255, 0.05);
+              border-top: 1px solid rgba(0, 0, 0, 0.3);
+              border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+              padding: 4px 8px; 
+              border-radius: 20px; 
+              font-size: 0.8rem; 
+              color: rgba(255, 255, 255, 0.6);
+              white-space: nowrap; 
+              flex-shrink: 0; 
+              align-self: flex-start; 
+              margin-top: 2px;
+              transition: all 0.2s ease;
+          }
           .median-pill b { color: #fff; }
           
           /* Allow multi-line text for verbose AI messages */
@@ -546,6 +580,7 @@ class ForkUHouseCard extends HTMLElement {
         </style>
         <div class="card">
           <div class="bg-image"></div>
+          <div class="gradient-layer"></div>
           <div class="dim-layer"></div>
           <div class="ambient-layer">
               <div class="ambient-light blob-1"></div>
