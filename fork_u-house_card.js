@@ -386,9 +386,16 @@ class ForkUHouseCard extends HTMLElement {
           :host { display: block; --fork-u-bg: #1e2024; --color-cold: #60A5FA; --color-opt: #34D399; --color-warm: #FBBF24; --color-hot: #F87171; }
           .card {
               position: relative; display: flex; flex-direction: column; width: 100%; height: 350px;
-              background: var(--fork-u-bg); border-radius: 20px; overflow: hidden;
-              box-shadow: 0 4px 10px rgba(0,0,0,0.3); font-family: 'Roboto', sans-serif;
+              background: var(--fork-u-bg);
+              overflow: hidden;
+              text-shadow: var(--primary-background-color) 0 1px 0px;
+              /* Please style borders and box shadow manually */
+              /*
+              border-radius: 20px;
+              box-shadow: 0 4px 10px rgba(0,0,0,0.3); 
+              font-family: 'Roboto', sans-serif;
               border: 1px solid rgba(255,255,255,0.1);
+              */
           }
           
           .bg-image {
@@ -440,7 +447,7 @@ class ForkUHouseCard extends HTMLElement {
           
           .footer {
               position: absolute; bottom: 0; left: 0; width: 100%; z-index: 5;
-              background: rgba(10, 10, 15, 0.65); backdrop-filter: blur(15px);
+              background: rgba(10, 10, 15, 0.25); backdrop-filter: blur(15px);
               border-top: 1px solid rgba(255,255,255,0.1); padding: 12px 16px;
               display: flex; align-items: center; gap: 12px; box-sizing: border-box; transition: background 0.3s;
               min-height: 60px; /* Space for multi-line text */
