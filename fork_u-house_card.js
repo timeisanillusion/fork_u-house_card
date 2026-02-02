@@ -176,11 +176,20 @@ class ForkUHouseCard extends HTMLElement {
         const sunState = this._hass.states[this._config.sun_entity || 'sun.sun']?.state || 'above_horizon';
         const timeOfDay = sunState === 'below_horizon' ? 'night' : 'day';
 
-        // 2. Święta (Xmas Priority)
+    // 2. Holidays (Custom Logic)
         const now = new Date();
         const month = now.getMonth() + 1;
         const day = now.getDate();
-        if ((month === 12 && day >= 14) || (month === 1 && day <= 14)) {
+
+        // --- HALLOWEEN (Oct 14 to Nov 1) ---
+        // Uses: autumn_halloween_day.png / autumn_halloween_night.png
+        if ((month === 10 && day >= 14) || (month === 11 && day <= 1)) {
+            return `${path}autumn_halloween_${timeOfDay}.png`;
+        }
+
+        // --- XMAS (Dec 1 to Feb 14) ---
+        // Uses: winter_xmas_day.png / winter_xmas_night.png
+        if (month === 12 || month === 1 || (month === 2 && day <= 14)) {
             return `${path}winter_xmas_${timeOfDay}.png`;
         }
 
