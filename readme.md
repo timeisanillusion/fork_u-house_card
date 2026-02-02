@@ -19,34 +19,35 @@ An advanced, glassmorphism-styled Home Assistant Lovelace card designed for moni
 
 **temperature monitoring, smart AI weather advice, and immersive visual effects.**
 
-Fork U, means I DONT FCKING CARE you have to mod this card as you need. (Weather effects based on prism)
-
-House images are generated in OpenAI/Gemini with prompt:
+House images are generated in Gemini with prompt:
 
 ```
-I am attaching reference photos of the house and a satellite view from Google Maps. The plot must be drawn isometrically in a video game style (e.g., Sim City or The Sims) but with a modern 2026 aesthetic. Below are the rules that must be strictly followed:
+I am attaching reference photos of the house, satellite views from Google Maps, and a sample image you can use as the base for the image. 
+The plot must be drawn isometrically in a video game style (e.g., Sim City or The Sims) but with a modern 2026 aesthetic. Below are the rules that must be strictly followed:
 
-High resolution.
-
+High resolution image.
+No video
 Dynamic point lighting.
-
 Depth and strong contrasting shading.
 
-The plot on which the house stands has a bottom layer in a glassmorphism style, and only on top of that is the soil layer depicting the scenery (for winter do not draw grass, only snow; for summer draw a manicured lawn; for spring draw spring grass with a small amount of spring flowers; for autumn, scatter a moderate amount of yellow-orange-brown autumn leaves on the grass).
+The plot on which the house stands has a bottom layer in a glass morphism style, and only on top of that is the soil layer depicting the scenery (for winter do not draw grass, only snow; for summer draw a manicured lawn; for spring draw spring grass with a small amount of spring flowers; for autumn, scatter a moderate amount of yellow-orange-brown autumn leaves on the grass).
 
 Solid background #121212, easy to cut out.
 
 Never draw anything outside the plot or on the background.
+Never draw any trees 
 
 A delicate shadow of the plot extending slightly beyond it, but very minimal; the same applies to any weather variants—do not go outside the plot boundaries!
 
 No solar panels on the roof.
 
-The car is a black BMW X1, black gloss, light reflections on the car.
+The car is a dark blue 2025 model Honda CRV, dark blue gloss, light reflections on the car.
 
-The car is facing the entrance gate.
+The car is facing the garage.
 
-Driveway and back of the house: concrete/pavement/slabs.
+Driveway is dark black tarmac.
+small thin stone path along the left side of the driveway
+Path widens towards the front porch
 
 Specifications of variants and their rules depending on weather conditions:
 
@@ -70,9 +71,7 @@ NOW GENERATING:
 
 Winter, Night, Snowing
 
-
 Additionally:
-
 Draw an igloo on the plot, a snowman draped with colorful fairy lights (light reflections), and Santa Claus sliding down the roof.
 ```
 
@@ -199,4 +198,5 @@ Fork my repo on GitHub! Necessary because would be nice if you could edit text s
 https://github.com/silasmariusz/fork_u-house_card
 
 Enjoy
+
 
