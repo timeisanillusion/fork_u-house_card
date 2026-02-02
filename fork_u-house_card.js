@@ -124,6 +124,7 @@ class ForkUHouseCard extends HTMLElement {
         cloud_coverage_entity: "sensor.openweathermap_cloud_coverage",
         party_mode_entity: "input_boolean.gaming_mode",  // enables gaming ambient
         
+        
         // AI Sensors
         aqi_entity: "sensor.waqi_pm2_5", 
         pollen_entity: "sensor.pollen_level", // Returns: 'High', 'Moderate', or number
@@ -138,6 +139,8 @@ class ForkUHouseCard extends HTMLElement {
     setConfig(config) {
       if (!config.rooms || !Array.isArray(config.rooms)) throw new Error("Missing 'rooms' list.");
       this._config = config;
+      this.pickleball_entity = config.pickleball_entity;
+      this.season_entity = config.season_entity; // Ensure this is defined for our logic
       this._lang = config.language || 'en';
       this._render();
     }
@@ -168,69 +171,70 @@ class ForkUHouseCard extends HTMLElement {
       if (this._animationFrame) cancelAnimationFrame(this._animationFrame);
     }
 
-     // --- NOWA LOGIKA WYBORU OBRAZKA ---
-    _calculateImage() {
-        const path = this._config.image_path || "/local/community/fork_u-house_card/images/";
-        
-        // 1. Pora Dnia
-        const sunState = this._hass.states[this._config.sun_entity || 'sun.sun']?.state || 'above_horizon';
-        const timeOfDay = sunState === 'below_horizon' ? 'night' : 'day';
+     // --- new image calc section ---
 
-    // 2. Holidays (Custom Logic)
+    _calculateImage() {
+        // 1. Setup Base Path
+        const rawPath = this._config.image_path || "/local/fork-u/";
+        const path = rawPath.endsWith('/') ? rawPath : rawPath + '/';
+        
+        if (!this._hass) return null;
+
+        // 2. Determine Sun and Season
+        const sun = this._hass.states[this._config.sun_entity || 'sun.sun'];
+        const timeOfDay = (sun && sun.state === 'below_horizon') ? 'night' : 'day';
+
+        const seasonEnt = this._hass.states[this._config.season_entity];
+        const season = (seasonEnt ? seasonEnt.state : 'summer').toLowerCase();
+
+        // 3. PICKLEBALL LOGIC (Highest Priority - Day Only)
+        if (this._config.pickleball_entity && this._hass.states[this._config.pickleball_entity]?.state === 'on') {
+            if (season === 'summer' && timeOfDay === 'day') {
+                return `${path}summer_pickleball_day.png`;
+            }
+        }
+
+        // 4. HOLIDAY LOGIC (Restricted by Season)
         const now = new Date();
         const month = now.getMonth() + 1;
         const day = now.getDate();
 
-        // --- HALLOWEEN (Oct 14 to Nov 1) ---
-        // Uses: autumn_halloween_day.png / autumn_halloween_night.png
-        if ((month === 10 && day >= 14) || (month === 11 && day <= 1)) {
+        // Halloween: Only if it's Autumn AND the right date
+        if (season === 'autumn' && ((month === 10 && day >= 14) || (month === 11 && day <= 1))) {
             return `${path}autumn_halloween_${timeOfDay}.png`;
         }
-
-        // --- XMAS (Dec 1 to Feb 14) ---
-        // Uses: winter_xmas_day.png / winter_xmas_night.png
-        if (month === 12 || month === 1 || (month === 2 && day <= 14)) {
+        
+        // Christmas: Only if it's Winter AND the right date
+        if (season === 'winter' && (month === 12 || month === 1 || (month === 2 && day <= 14))) {
             return `${path}winter_xmas_${timeOfDay}.png`;
         }
 
-        // 3. Sezon
-        let season = this._hass.states[this._config.season_entity]?.state || 'summer';
-        const seasonMap = { 'wiosna': 'spring', 'lato': 'summer', 'jesień': 'autumn', 'zima': 'winter' };
-        if (seasonMap[season]) season = seasonMap[season];
-        season = season.toLowerCase();
-
-        // 4. Ścisłe Mapowanie Pogody (Strict Mapping)
-        const wStateRaw = this._hass.states[this._config.weather_entity]?.state;
+        // 5. WEATHER LOGIC (Restored)
+        const wState = this._hass.states[this._config.weather_entity]?.state?.toLowerCase();
         let weatherSuffix = null;
 
-        if (wStateRaw) {
-            const s = wStateRaw.toLowerCase();
-            
-            // Tłumaczenie stanów HA na Twoje nazwy plików
-            if (['lightning', 'lightning-rainy'].includes(s)) {
+        if (wState) {
+            if (['lightning', 'lightning-rainy'].includes(wState)) {
                 weatherSuffix = 'lightning';
-            } else if (['rainy', 'pouring'].includes(s)) {
+            } else if (['rainy', 'pouring'].includes(wState)) {
                 weatherSuffix = 'rainy';
-            } else if (['snowy', 'snowy-rainy'].includes(s)) {
+            } else if (['snowy', 'snowy-rainy'].includes(wState)) {
                 weatherSuffix = 'snowy';
-            } else if (s === 'fog') {
+            } else if (wState === 'fog') {
                 weatherSuffix = 'fog';
             }
-            // Sunny, cloudy, partlycloudy -> weatherSuffix pozostaje null (czyli fallback do season_day.png)
         }
 
-        // 5. Sprawdzenie Boolean w Configu
+        // 6. CONFIG OVERRIDES (Restored)
+        // Checks if things like img_winter_day_fog are set to true in your card config
         if (weatherSuffix) {
-            // Klucz np.: img_winter_day_rainy
             const configKey = `img_${season}_${timeOfDay}_${weatherSuffix}`;
-            
-            // Jeśli w YAML jest: img_winter_day_rainy: true
             if (this._config[configKey] === true) {
                 return `${path}${season}_${weatherSuffix}_${timeOfDay}.png`;
             }
         }
 
-        // 6. Fallback (Neutralny)
+        // 7. DEFAULT FALLBACK
         return `${path}${season}_${timeOfDay}.png`;
     }
 
