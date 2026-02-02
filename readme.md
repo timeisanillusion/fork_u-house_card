@@ -116,61 +116,30 @@ Add the following to your Dashboard YAML configuration.
 
 ```yaml
 type: custom:fork-u-house-card
-title: "My Residence" # Optional title (visual only)
-language: "en"        # Options: 'en', 'pl'
-
-img_winter_day_fog: true    # will look for winter_fog_day.png
-img_winter_night_fog: false # will not look for winter_night_fog.png and fallback to winter_day.png
-# remember to do the same for summer, winter, autumn, spring
-
-# also please note xmas starts 14 dec to 14 jan
-# remember to provide winter_xmas_day.png i winter_xmas_night.png 
-
-# use test to check animations effects:
-test_weather_state: fog # cloud, lightning, snowy, rainy, ...
-
-# --- Core Entities --- REQUIRED
-weather_entity: weather.forecast_home
+title: My Home
+language: en
+image_path: /local/fork-u/
+weather_entity: weather.home
 season_entity: sensor.season
 sun_entity: sun.sun
-cloud_coverage_entity: sensor.openweathermap_cloud_coverage # Optional (0-100%)
-
-# --- Feature Switches ---
-party_mode_entity: input_boolean.gaming_mode  # Toggles the "Gaming Ambient" lights
-
-# --- Environmental Sensors (For AI Logic) ---
-# If you don't have specific sensors, you can leave them empty, 
-# but AI advice will be less detailed.
-aqi_entity: sensor.waqi_pm2_5           # Air Quality (PM2.5)
-pollen_entity: sensor.pollen_level      # Pollen (High/Moderate or number)
-uv_entity: sensor.uv_index              # UV Index
-wind_speed_entity: sensor.wind_speed    # Wind Speed (km/h)
-wind_direction_entity: sensor.wind_bearing # Wind Bearing (degrees)
-
-# --- Rooms Configuration ---
-# Define temperature sensors to display as badges over the house image.
-# x: Horizontal position % (0 = left, 100 = right)
-# y: Vertical position % (0 = top, 100 = bottom)
-# weight: 1 = Include in "Home Average" calculation, 0 = Exclude (e.g. attic/basement)
+wind_speed_entity: sensor.environment_canada_weather_wind_speed
+wind_direction_entity: sensor.environment_canada_weather_wind_bearing
+img_winter_day_fog: false
+img_winter_night_fog: false
+img_summer_day_rain: false
+pickleball_entity: input_boolean.pickleball_mode
 rooms:
-  - name: "Living Room"
-    entity: sensor.living_room_temperature
-    x: 50
-    y: 70
-    weight: 1
-
-  - name: "Bedroom"
-    entity: sensor.bedroom_temperature
-    x: 20
-    y: 30
-    weight: 1
-
-  - name: "Attic"
-    entity: sensor.attic_temperature
-    x: 50
-    y: 10
-
+  - name: Outside
+    entity: sensor.environment_canada_weather_temperature
+    x: 12
+    "y": 15
     weight: 0
+  - name: Inside
+    entity: sensor.thermostatecobee_current_temperature
+    x: 60
+    "y": 30
+    weight: 1
+
 ```
 
 ## Note for me (reddit questions) answer:
@@ -198,5 +167,6 @@ Fork my repo on GitHub! Necessary because would be nice if you could edit text s
 https://github.com/silasmariusz/fork_u-house_card
 
 Enjoy
+
 
 
