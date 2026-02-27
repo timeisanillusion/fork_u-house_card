@@ -4,18 +4,10 @@ REQUIRED:
 1. Add season.season in integrations
 2. add sun.sun sensor in integration
 3. Add Environment Canada
-4. Add google weather or openweathermap integration - both are free even youll be asked to add credit card for openwratherapi - just on revoult add new virtual card, give them and close it after it.
-if you have old openweathermap API added before 2025 it may not report additional attributes (dont know if im right but had this issue)
-NOTE: wind direction sensor is mandatory telling cloud animations directions movement!
-
-i know its much but if you dont use them then you did not unlock secret items. the journey will start now ;)
-
-![msedge_bNu5APEUJq](https://github.com/user-attachments/assets/8405dc20-4e71-4588-a56a-044292b8ab87)
 
 An advanced, glassmorphism-styled Home Assistant Lovelace card designed for monitoring home climate, weather conditions, and environmental hazards.
 
 **temperature monitoring, smart AI weather advice, and immersive visual effects.**
-
 House images are generated in Gemini with prompt:
 
 ```
@@ -164,6 +156,7 @@ Fork my repo on GitHub! Necessary because would be nice if you could edit text s
 https://github.com/silasmariusz/fork_u-house_card
 
 Enjoy
+
 
 
 
