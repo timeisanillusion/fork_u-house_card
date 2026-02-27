@@ -1,13 +1,10 @@
 # 🏠 Fork U-House Card
 
-(I'm so lazy with codding so I asked Gemini to wrote this card :P Yeap)
-
 REQUIRED: 
 1. Add season.season in integrations
 2. add sun.sun sensor in integration
-3. using googles api add UV index and pooling sensors (google for this its free anyway)
-4. you will need also from google AQI sensors ;)
-5. Add google weather or openweathermap integration - both are free even youll be asked to add credit card for openwratherapi - just on revoult add new virtual card, give them and close it after it.
+3. Add Environment Canada
+4. Add google weather or openweathermap integration - both are free even youll be asked to add credit card for openwratherapi - just on revoult add new virtual card, give them and close it after it.
 if you have old openweathermap API added before 2025 it may not report additional attributes (dont know if im right but had this issue)
 NOTE: wind direction sensor is mandatory telling cloud animations directions movement!
 
@@ -167,6 +164,7 @@ Fork my repo on GitHub! Necessary because would be nice if you could edit text s
 https://github.com/silasmariusz/fork_u-house_card
 
 Enjoy
+
 
 
 
